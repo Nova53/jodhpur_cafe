@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import Gallery from "../../components/Gallary";
 import ContactForm from "../../components/layout/Contactform";
 import AutoCarousel from "../../components/layout/Contactimg";
