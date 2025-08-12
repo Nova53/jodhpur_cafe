@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Gallery from "../../components/Gallary";
-import ContactForm from "../../components/layout/Contactform";
-import AutoCarousel from "../../components/layout/Contactimg";
+import { ContactForm, AutoCarousel } from "../../components/layout";
 import { BsInstagram } from "react-icons/bs";
 
 
