@@ -1,7 +1,8 @@
-import { useForm } from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+// ✅ Validation schema
 const schema = yup.object({
   firstName: yup.string().required("First name is required"),
   lastName: yup.string().required("Last name is required"),
@@ -10,20 +11,38 @@ const schema = yup.object({
     .string()
     .matches(/^\+?[0-9\s-]{7,15}$/, "Invalid phone number")
     .required("Phone number is required"),
-  preferences: yup.array().min(1, "Select at least one preference"),
-  privacy: yup.boolean().oneOf([true], "You must agree to the privacy policy"),
+  preferences: yup
+    .array()
+    .of(yup.string())
+    .min(1, "Select at least one preference")
+    .required("Select at least one preference"),
+  privacy: yup
+    .boolean()
+    .oneOf([true], "You must agree to the privacy policy")
+    .required("You must agree to the privacy policy"),
 });
+
+// ✅ Infer TS type from schema
+type FormData = yup.InferType<typeof schema>;
 
 export default function ContactForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormData>({
     resolver: yupResolver(schema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      preferences: [],
+      privacy: false,
+    },
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit: SubmitHandler<FormData> = (data) => {
     console.log(data);
     alert("Form submitted successfully!");
   };
@@ -34,7 +53,9 @@ export default function ContactForm() {
       className="max-w-lg mx-auto p-4 sm:p-6 text-white rounded-lg flex flex-col gap-3"
     >
       <h2 className="text-xl sm:text-2xl font-bold text-orange-400">Get in touch</h2>
-      <p className="mb-3 sm:mb-4 text-sm sm:text-base">Our friendly team would love to hear from you.</p>
+      <p className="mb-3 sm:mb-4 text-sm sm:text-base">
+        Our friendly team would love to hear from you.
+      </p>
 
       {/* Name */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -85,12 +106,7 @@ export default function ContactForm() {
         <p className="font-semibold mb-2 text-sm sm:text-base">Email preferences</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <label className="text-sm sm:text-base">
-            <input
-              className="mr-2"
-              type="checkbox"
-              value="deals"
-              {...register("preferences")}
-            />
+            <input type="checkbox" value="deals" {...register("preferences")} className="mr-2" />
             Deals/Offers
           </label>
           <label className="text-sm sm:text-base">
