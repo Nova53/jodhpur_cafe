@@ -1,8 +1,23 @@
 @import "tailwindcss";
+
+:root {  
+   --primary-color: #F5652F;
+  --secondary-color: #F5F5DC;
+  --tertiary-color: #ffffff;
+  --quaternary-color: #000000;
+  --quinary-color: #F5F5DC;
+  --senary-color: #F5F5DC;
+  --septenary-color: #F5F5DC;
+}
 * {
   font-family: "AL Nevrada Personal Use Only";
+  
 }
 
+.container{
+   width: 1440px;
+   margin: 0 auto;
+}
 @layer components {
   .btn1 {
     @apply relative py-[12px] px-[20px] font-semibold text-white bg-[#F5652F] rounded-[12px]
