@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const images = [
   "/Cimg1.jpg", // replace with your imported or public folder paths

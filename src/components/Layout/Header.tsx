@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import Button from '../common/Button';
 import { NAVIGATION_ITEMS } from '../../constants';
 
