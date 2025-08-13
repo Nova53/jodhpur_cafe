@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { OptimizedImage } from "./common";
 
 const images = [
   "./Gallaryimg1.jpg",
@@ -24,10 +25,12 @@ export default function Gallery() {
             className="mb-4 break-inside-avoid cursor-pointer overflow-hidden rounded-xl"
             onClick={() => setSelectedImage(src)}
           >
-            <img
+            <OptimizedImage
               src={src}
               alt={`Gallery ${idx}`}
               className="w-full h-auto hover:scale-105 transition-transform duration-500"
+              width={400}
+              height={300}
             />
           </div>
         ))}
