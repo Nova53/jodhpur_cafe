@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Gallery from "../../components/Gallary";
 import { BsInstagram } from "react-icons/bs";
-import ContactForm from "../../components/Layout/Contactform";
-import AutoCarousel from "../../components/Layout/Contactimg";
+import ContactForm from "../../components/mainLayout/Contactform";
+import AutoCarousel from "../../components/mainLayout/Contactimg";
 
 
 const Location = () => {
