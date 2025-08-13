@@ -75,6 +75,3 @@ export const getInitials = (name: string): string => {
     .toUpperCase()
     .slice(0, 2);
 };
-
-// Export image preloader utilities
-export * from './imagePreloader';

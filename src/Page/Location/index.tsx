@@ -3,8 +3,6 @@ import Gallery from "../../components/Gallary";
 import { BsInstagram } from "react-icons/bs";
 import ContactForm from "../../components/mainLayout/Contactform";
 import AutoCarousel from "../../components/mainLayout/Contactimg";
-import { OptimizedImage, OptimizedBackground } from "../../components/common";
-import { preloadCriticalImages, preloadGalleryImages } from "../../utils";
 
 
 const Location = () => {
@@ -17,12 +15,6 @@ const Location = () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [showMoreInfo]);
-
-  // Preload critical images on component mount
-  useEffect(() => {
-    preloadCriticalImages();
-    preloadGalleryImages();
-  }, []);
 
   const locationData = {
     leeds: {
@@ -62,16 +54,17 @@ const Location = () => {
     return (
       <div className="m-0 p-0">
         {/* Hero Section with नमस्ते */}
-        <OptimizedBackground
-          src="./img1.jpg"
-          alt="Restaurant Interior Background"
-          className="h-[500px] flex flex-col justify-center items-center text-center"
-          priority={true}
-        >
-          {/* Content */}
-          <p className="text-[48px] text-white z-10">नमस्ते,</p>
-          <p className="text-[#F26632] text-[64px] z-10">{currentLocation.name}</p>
-        </OptimizedBackground>
+        <div className="relative h-[500px] flex flex-col justify-center items-center text-center">
+  {/* Background with opacity */}
+  <div
+    className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-85"
+    style={{ backgroundImage: 'url(./img1.jpg)' }}
+  ></div>
+
+  {/* Content */}
+  <p className="text-[48px] text-white z-10">नमस्ते,</p>
+  <p className="text-[#F26632] text-[64px] z-10">{currentLocation.name}</p>
+</div>
 
 
         {/* Location Information Section with Light Beige Background */}
@@ -194,21 +187,17 @@ const Location = () => {
           {/* Top Row - 2 images (1 large left, 1 smaller right) */}
           <div className="grid grid-cols-5 gap-4 mb-4">
             <div className="col-span-2 overflow-hidden rounded-lg">
-              <OptimizedImage 
+              <img 
                 src="./Gallaryimg1.jpg" 
                 alt="Restaurant Interior - Wide Shot" 
                 className="w-full h-64 object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" 
-                width={400}
-                height={256}
               />
             </div>
             <div className="col-span-3 overflow-hidden rounded-lg">
-              <OptimizedImage 
+              <img 
                 src="./Gallaryimg2.jpg" 
                 alt="Jodhpur Logo - Dark Background" 
                 className="w-full h-64 object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" 
-                width={600}
-                height={256}
               />
             </div>
           </div>
@@ -216,30 +205,24 @@ const Location = () => {
           {/* Bottom Row - 3 equal images */}
           <div className="grid grid-cols-3 gap-4">
             <div className="overflow-hidden rounded-lg">
-              <OptimizedImage 
+              <img 
                 src="./Gallaryimg3.jpg" 
                 alt="Namaste Gesture" 
                 className="w-full h-48 object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" 
-                width={400}
-                height={192}
               />
             </div>
             <div className="overflow-hidden rounded-lg">
-              <OptimizedImage 
+              <img 
                 src="./Gallaryimg4.jpg" 
                 alt="Outdoor Dining with Thali" 
                 className="w-full h-48 object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" 
-                width={400}
-                height={192}
               />
             </div>
             <div className="overflow-hidden rounded-lg">
-              <OptimizedImage 
+              <img 
                 src="./Gallaryimg5.jpg" 
                 alt="Food Thali Close-up" 
                 className="w-full h-48 object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" 
-                width={400}
-                height={192}
               />
             </div>
           </div>
@@ -254,12 +237,10 @@ const Location = () => {
            <div className="grid grid-cols-4 gap-4 mb-4">
              {[1, 2, 3, 4].map((num) => (
                <div key={num} className="overflow-hidden rounded-lg">
-                 <OptimizedImage 
+                 <img 
                    src={`./Gallaryimg${num}.jpg`} 
                    alt={`Gallery Image ${num}`} 
                    className="w-full h-32 object-cover hover:scale-105 transition-transform duration-500 cursor-pointer"
-                   width={300}
-                   height={128}
                  />
                </div>
              ))}
@@ -269,12 +250,10 @@ const Location = () => {
            <div className="grid grid-cols-4 gap-4 mb-8">
              {[5, 6, 7, 8].map((num) => (
                <div key={num} className="overflow-hidden rounded-lg">
-                 <OptimizedImage 
+                 <img 
                    src={`./Gallaryimg${num}.jpg`} 
                    alt={`Gallery Image ${num}`} 
                    className="w-full h-32 object-cover hover:scale-105 transition-transform duration-500 cursor-pointer"
-                   width={300}
-                   height={128}
                  />
                </div>
              ))}
@@ -309,12 +288,7 @@ const Location = () => {
   // Main location page
   return (
     <div className="m-0 p-0">
-      <OptimizedBackground
-        src="./headerBanner.png"
-        alt="Jodhpur Cafe Header Banner"
-        className="h-[500px] p-0 m-0 flex flex-col justify-center items-center text-center"
-        priority={true}
-      >
+      <div className="bg-[url(./headerBanner.png)] bg-cover bg-center bg-no-repeat h-[500px] p-0 m-0 flex flex-col justify-center items-center text-center">
         <p className="text-[48px] text-[#ffffff]">
           "Find Jodhpur Flavours
           <br /> near you."
@@ -322,7 +296,7 @@ const Location = () => {
         <p className="text-[#ffffff] text-[24px]">
           "Bringing the royal taste of Rajasthan to your city."
         </p>
-      </OptimizedBackground>
+      </div>
       
       {/* Location Tabs */}
       <div className="p-[2em]">
@@ -374,21 +348,17 @@ const Location = () => {
         </div>
         <div className="flex w-[70%] gap-4 justify-center">
           <div className="overflow-hidden rounded-lg mb-5">
-            <OptimizedImage 
+            <img 
               className="h-[520px] hover:scale-105 transition-transform duration-500 cursor-pointer" 
               src="./img1.jpg" 
               alt="Restaurant Interior 1" 
-              width={400}
-              height={520}
             />
           </div>
           <div className="overflow-hidden rounded-lg mt-5">
-            <OptimizedImage 
+            <img 
               className="h-[520px] hover:scale-105 transition-transform duration-500 cursor-pointer" 
               src="./img2.png" 
               alt="Restaurant Interior 2" 
-              width={400}
-              height={520}
             />
           </div>
         </div>
@@ -398,20 +368,14 @@ const Location = () => {
         <h2 className="text-4xl text-[#F5652F] font-bold font-[Poppins]">Jodhpur's Gallery</h2>
       </div>
       <Gallery/>
-              <div className="flex justify-center ">
-          <div className="w-[50%] p-[2em]">
-            <OptimizedBackground
-              src="./bg.jpg"
-              alt="Contact Form Background"
-              className="w-full h-full"
-            >
-              <ContactForm/>
-            </OptimizedBackground>
-          </div>
-          <div className="w-[50%] ">
-            <AutoCarousel/>
-          </div>
+      <div className="flex justify-center ">
+        <div className=" bg-[url(./bg.jpg)] bg-cover bg-center bg-no-repeat w-[50%] p-[2em] ">
+          <ContactForm/>
         </div>
+        <div className="w-[50%] ">
+          <AutoCarousel/>
+        </div>
+      </div>
     </div>
   );
 };

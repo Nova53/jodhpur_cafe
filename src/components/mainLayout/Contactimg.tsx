@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { OptimizedImage } from "../common";
 
 const images = [
   "/Cimg1.jpg", // replace with your imported or public folder paths
@@ -22,15 +21,13 @@ export default function AutoCarousel() {
   return (
     <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[80vh] lg:h-[100vh] overflow-hidden">
       {images.map((img, index) => (
-        <OptimizedImage
+        <img
           key={index}
           src={img}
           alt={`Slide ${index}`}
           className={`absolute w-full h-full object-cover transition-opacity duration-700 ${
             index === currentIndex ? "opacity-100" : "opacity-0"
           }`}
-          width={800}
-          height={600}
         />
       ))}
     </div>
