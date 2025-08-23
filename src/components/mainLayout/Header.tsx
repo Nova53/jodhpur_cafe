@@ -14,8 +14,8 @@ const Header = () => {
   return (
     <header className="relative bg-white shadow-md">
       {/* Hero Background with Blur Effect */}
-      <div className="absolute inset-0 bg-[url(./image.jpg)] bg-cover bg-center bg-no-repeat">
-        <div className="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
+      <div className="absolute inset-0 bg-[url(./nav_bg.jpg)] bg-cover bg-center bg-no-repeat">
+        <div className="absolute inset-0 "></div>
       </div>
       
       {/* Navigation Content */}

@@ -2,7 +2,9 @@ import { FaInstagram, FaWhatsapp, FaFacebookF } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 text-white py-6 sm:py-8 md:py-10 mt-10 sm:mt-16 md:mt-20">
+    <footer className="relative bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 text-white py-6 sm:py-8 md:py-10 mt-10 sm:mt-16 md:mt-20" style={{
+          backgroundImage: "url('/bg_fream.jpg')", // replace with your image path
+        }}>
       <div className="container mx-auto flex flex-col items-center space-y-3 sm:space-y-4 px-4 sm:px-6 md:px-8">
         {/* Logo */}
         <img
